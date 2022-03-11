@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('list_items', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();//making can be null at any given instance, not a mandatory input
             $table->integer('is_complete');
             $table->timestamps();
         });

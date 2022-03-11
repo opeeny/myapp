@@ -25,13 +25,20 @@
            <div>
             <h1>To do list</h1>
             @foreach($listItems as $listItem)
-                <p>Item: {{ $listItem -> name }}</p>
+                <p>
+                    Item: {{ $listItem -> name }}
+                    <!--wrap this button as well in a form element-->
+                    <form action="{{ route('mark_route', $listItem->id) }}" method="POST" accept-charset="UT-F">
+                        {{ csrf_field() }}
+                        <button type="submit" style="color:red;max-height:25px;margin-left:20px;" name="savemark">mark complete</button>
+                    </form>
+                </p>
             @endforeach
-            <form action="{{ route('saveItem') }}" method="POST"  accept-charset="UTF-8">
+            <form action="{{ route('save_route') }}" method="POST"  accept-charset="UTF-8">
                 {{ csrf_field() }}
                 <label for="listItem">New Todo Item</label><br/>
                 <input type="text"  name="listItem" /><br/>
-                <button type="submit">Save Item</button>
+                <button type="submit" name="save">Save Item</button>
             </form>
            </div>
         </div>
