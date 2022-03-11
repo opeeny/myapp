@@ -18,7 +18,8 @@ class TodoListController extends Controller
        $newListItem-> name = $request->listItem;
        $newListItem-> is_complete = 0;//set to a default value
        $newListItem->save();
-        return view('welcome', ['listItems'=>ListItem::all()]);
+       // return view('welcome', ['listItems'=>ListItem::all()]);
+        return redirect('/');//redirecting to the default home page route
     }
     //create method index to handle the default router
     
