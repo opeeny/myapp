@@ -25,7 +25,7 @@
            <div>
             <h1>To do list</h1>
             @foreach($listItems as $listItem)
-                Item: {{ $listItem -> name }}
+                <p>Item: {{ $listItem -> name }}</p>
             @endforeach
             <form action="{{ route('saveItem') }}" method="POST"  accept-charset="UTF-8">
                 {{ csrf_field() }}
