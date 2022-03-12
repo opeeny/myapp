@@ -22,6 +22,11 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
            <div>
             <h1>To do list</h1>
             @foreach($listItems as $listItem)
@@ -31,9 +36,11 @@
                     <form action="{{ route('mark_route', $listItem->id) }}" method="POST" accept-charset="UT-F">
                         {{ csrf_field() }}
                         <button type="submit" style="color:red;max-height:25px;margin-left:20px;" name="savemark">mark complete</button>
+                       
                     </form>
                 </p>
             @endforeach
+            
             <form action="{{ route('save_route') }}" method="POST"  accept-charset="UTF-8">
                 {{ csrf_field() }}
                 <label for="listItem">New Todo Item</label><br/>

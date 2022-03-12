@@ -11,7 +11,7 @@ class TodoListController extends Controller
     public function index(){
 
         /*return view("welcome", ['listItems'=>ListItem::all()]);*/
-        return view('welcome', ['listItems'=>ListItem::where('is_complete',0)->get()]);
+        return view('welcome', ['listItems'=>ListItem::where('is_complete',0)->get()]);//get()//this probably deletes it from the homepage
     }
     public function saveItem(Request $request) {
        // \Log::info(json_encode($request->all()));
@@ -25,7 +25,7 @@ class TodoListController extends Controller
     //create method index to handle the default router
     public function markItem($id){
         
-        $listItem=ListItem::find($id);
+        $listItem=ListItem::find($id);//why didn't we say $listItem=new ListItem::find($id);
         $listItem->is_complete=1;
         $listItem->save();
         /*
@@ -35,6 +35,6 @@ class TodoListController extends Controller
           $newListItem->is_complete=1;
           $newListItem->save();
         */
-        return redirect('/');
+        return back()->with('message', 'Deleted');
     }
 }
